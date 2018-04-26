@@ -7,7 +7,7 @@ from PIL import Image
 import os
 import shutil
 import time
-import private
+import config
 
 def check_size(filename):
     size = os.path.getsize(filename)
@@ -28,7 +28,7 @@ def crop_image(filename):
 
 geckopath= "/usr/local/bin/geckodriver"
 
-url = "http://preview.risevision.com/Viewer.html?type=display&id={}".format(private.displayid)
+url = "http://preview.risevision.com/Viewer.html?type=display&id={}".format(config.displayid)
 try:
     display = Display(visible=0, size=(1920,1080))
     display.start()
@@ -54,7 +54,7 @@ try:
     dupeCount = 0
     isDupe = False
     
-    while dupeCount < private.threshhold:
+    while dupeCount < config.threshhold:
         filename = "tmp/test{}.png".format(str(pictureCount))
         driver.save_screenshot(filename)
         newfilesize = check_size(filename)
@@ -63,8 +63,8 @@ try:
         if pictureCount is not 0:
             isDupe = check_all_sizes(newfilesize,sizelist)
         if isDupe:
-            print(filename +" is duplicate, deleting,")
             dupeCount +=1
+            print(filename +" is duplicate number " + dupeCount ", deleting")
             os.remove(filename)
         else:
             sizelist.append(newfilesize)
