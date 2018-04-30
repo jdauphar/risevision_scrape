@@ -1,6 +1,6 @@
 # risevision_scrape
-This program scrapes pictures from risevision on a 5 second timer and removes duplicates.
+This program is meant to run on gnu/linux platforms. It scrapes pictures from risevision on a 5 second timer and removes duplicates.
 
 use setup.sh to install necessary packages.
 
-private.py needs to be given a displayid for the program to work.
+config.py needs to be given a displayid for the program to work.
